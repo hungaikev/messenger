@@ -22,12 +22,6 @@ If this is your first time running SBT, you will be downloading the internet.
     sbt compile
 
 
-### Run the Tests 
-
-    cd messenger
-    sbt test
-
-
 ### Running
 Once you have sbt installed, the following at the command prompt will start up Play in development mode:
 
