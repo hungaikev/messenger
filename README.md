@@ -36,5 +36,5 @@ Play will start up on the HTTP port at http://localhost:9000/.   You don't need 
 If you call the same URL from the command line, you’ll see JSON. Using httpie, we can execute the command:
 
 ```
-http --verbose http://localhost:9000
+http --verbose http://localhost:9000/api/messages
 ```

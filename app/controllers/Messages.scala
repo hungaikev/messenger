@@ -47,7 +47,7 @@ class Messages @Inject() (messsagesDao: MesssagesDao) extends Controller {
     * @param id
     * @return
     */
-  def show(id:Int) = Action.async { implicit request =>
+  def show(id:Long) = Action.async { implicit request =>
     val message = messsagesDao.findMessageById(id)
     message.map( ms => Ok(Json.obj("status" -> "Success", "message" -> Json.toJson(ms))))
       .recover { case e => InternalServerError(s"Error selecting message with id -> ${id}: ${e}") }
@@ -60,7 +60,7 @@ class Messages @Inject() (messsagesDao: MesssagesDao) extends Controller {
     * @param message
     * @return
     */
-  def update(id:Int,message:String) = Action.async { implicit rs =>
+  def update(id:Long,message:String) = Action.async { implicit rs =>
     messsagesDao.updateMessage(id,message).map(ms =>
       Ok(Json.obj("successfully updated" -> s"Message with id $id")))
 
@@ -72,7 +72,7 @@ class Messages @Inject() (messsagesDao: MesssagesDao) extends Controller {
     * @param id
     * @return
     */
-  def delete(id:Int) = Action.async { implicit  rs =>
+  def delete(id:Long) = Action.async { implicit  rs =>
     for {
       _  <- messsagesDao.deleteMessage(id)
     } yield Ok(Json.obj("success" -> "Message Deleted"))
