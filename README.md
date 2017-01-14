@@ -2,6 +2,13 @@
 ## Messenger Service
 
 
+### Create your Database
+
+    CREATE DATABASE "learning" WITH ENCODING 'UTF8';
+    CREATE USER "student" WITH PASSWORD 'trustNo1';
+    GRANT ALL ON DATABASE "learning" TO student;
+
+
 ### Clone the repo
     git clone https://github.com/hungaikev/messenger.git
     cd messenger
@@ -20,9 +27,6 @@ If this is your first time running SBT, you will be downloading the internet.
     cd messenger
     sbt test
 
-### To generate the coverage reports run
-
-    $ sbt coverageReport
 
 ### Running
 Once you have sbt installed, the following at the command prompt will start up Play in development mode:
@@ -38,17 +42,5 @@ Play will start up on the HTTP port at http://localhost:9000/.   You don't need 
 If you call the same URL from the command line, you’ll see JSON. Using httpie, we can execute the command:
 
 ```
-http --verbose http://localhost:9000/balance
-```
-
-To make a deposit execute the following command 
-
-```
-http -f POST http://localhost:9000/deposit/1000
-```
-
-Likewise, you can also make a withdrawal:
-
-```
-http -f POST http://localhost:9000/withdraw/200
+http --verbose http://localhost:9000
 ```

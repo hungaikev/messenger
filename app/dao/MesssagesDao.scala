@@ -17,7 +17,7 @@ trait MessagesComponent {
 
   class Messages(tag:Tag) extends Table[Message](tag, "messages"){
 
-    def messageId = column[Long]("question_id",O.PrimaryKey,O.AutoInc)
+    def messageId = column[Long]("message_id",O.PrimaryKey,O.AutoInc)
     def from = column[String]("from")
     def description = column[String]("description")
     def to = column[String]("to")
@@ -60,7 +60,7 @@ class MesssagesDao @Inject() (protected val dbConfigProvider: DatabaseConfigProv
     db.run(messages.filter(_.messageId === messageId).result.headOption)
 
   /**
-    * Delete a message 
+    * Delete a message
     * @param messageId
     * @return
     */
