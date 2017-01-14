@@ -60,6 +60,40 @@ class MesssagesDao @Inject() (protected val dbConfigProvider: DatabaseConfigProv
     db.run(messages.filter(_.messageId === messageId).result.headOption)
 
   /**
+    *
+    * @param user
+    * @return
+    */
+  def findFromMessageByUser(user:String):Future[Seq[Message]] =
+    db.run(messages.filter(_.from === user).result)
+
+  /**
+    *
+    * @param user
+    * @return
+    */
+  def findToMessagesByUser(user:String):Future[Seq[Message]] =
+    db.run(messages.filter(_.to === user).result)
+
+
+  /**
+    * Update a Message
+    * @param id
+    * @param message
+    * @return
+    */
+  def updateMessage(id:Long,message:String): Future[Unit] =
+    db.run(messages.filter(_.messageId === id).map(_.description).update(message)).map(_ => ())
+
+
+  /**
+    *
+    * @return
+    */
+  def allMessages : Future[Seq[Message]] =
+    db.run(messages.result)
+
+  /**
     * Delete a message
     * @param messageId
     * @return
