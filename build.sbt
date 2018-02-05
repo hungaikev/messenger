@@ -12,12 +12,14 @@ val slf4jVersion = "1.7.21"
 
 libraryDependencies ++= Seq(
   "org.postgresql" % "postgresql" % postgres,
-  "com.typesafe.play" %% "play-slick" % "2.0.0",
-  "com.typesafe.play" %% "play-slick-evolutions" % "2.0.0",
+  "com.typesafe.play" %% "play-slick" % "3.0.1",
+  "com.typesafe.play" %% "play-slick-evolutions" % "3.0.1",
   "joda-time" % "joda-time" % "2.9.6",
   "org.scalacheck" %% "scalacheck" % "1.13.4" % "test",
-  cache ,
   ws   ,
+  guice ,
+  openId ,
+  "com.typesafe.play" %% "play-json" % "2.6.7",
   "org.slf4j" % "slf4j-nop" % slf4jVersion,
   specs2 % Test )
 

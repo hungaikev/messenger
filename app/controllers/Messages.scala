@@ -2,20 +2,19 @@ package controllers
 
 import play.api._
 import play.api.mvc._
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import javax.inject.Inject
 
 import dao._
 import models._
 import play.api.libs.json._
 
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
 
 
 /**
   * Created by hungai on 1/13/17.
   */
-class Messages @Inject() (messsagesDao: MesssagesDao) extends Controller {
+class Messages @Inject() (messsagesDao: MesssagesDao, cc: ControllerComponents)(implicit ec: ExecutionContext) extends AbstractController(cc) {
 
   /**
     * Action that returns all messages stored

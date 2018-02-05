@@ -1,11 +1,11 @@
 package dao
 
 import javax.inject.{Inject, Singleton}
-import scala.concurrent.Future
+
+import scala.concurrent.{ExecutionContext, Future}
 import models._
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import slick.driver.JdbcProfile
+import slick.jdbc.JdbcProfile
 
 /**
   * Created by hungai on 1/13/17.
@@ -13,7 +13,7 @@ import slick.driver.JdbcProfile
 
 trait MessagesComponent {
   self: HasDatabaseConfigProvider[JdbcProfile] =>
-  import driver.api._
+  import profile.api._
 
   class Messages(tag:Tag) extends Table[Message](tag, "messages"){
 
@@ -27,9 +27,10 @@ trait MessagesComponent {
 }
 
 @Singleton
-class MesssagesDao @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends MessagesComponent with HasDatabaseConfigProvider[JdbcProfile] {
+class MesssagesDao @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) (implicit ec: ExecutionContext)
+  extends MessagesComponent with HasDatabaseConfigProvider[JdbcProfile] {
 
-  import driver.api._
+  import profile.api._
 
   lazy val messages = TableQuery[Messages]
 
