@@ -19,4 +19,4 @@ COPY / $PROJECT_DIR/
 
 RUN ls -la $PROJECT_DIR/* 
 
-RUN sbt -no-colors clean
+RUN sbt -no-colors clean universal:packageZipTarball
